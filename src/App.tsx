@@ -1,23 +1,46 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import JSONSchemaForm from '@rjsf/core';
 
-function App() {
+const App = ({}) => {
+  const Formulaire = JSONSchemaForm;
+
+  const schema: any = {
+    "title": "Dots Test Form",
+    "type": "object",
+    "required": [
+      "mail",
+      "service"
+    ],
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "adresse": {
+        "type": "string"
+      },
+      "mail": {
+        "type": "string"
+      },
+      "service": {
+        "type": "string",
+        "enum": [
+          "dev",
+          "marketing",
+          "commerce",
+          "produit",
+          "finance",
+          "autre"
+        ]
+      }
+    }
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Formulaire schema={schema} />
       </header>
     </div>
   );
